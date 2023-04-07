@@ -63,4 +63,13 @@ public class GlobalExceptionHandler {
         problemDetail.setType(URI.create("localhost:8080/errors/not-valid-value"));
         return problemDetail;
     }
+
+    @ExceptionHandler(InvalidPasswordExceptionHandler.class)
+    ProblemDetail handleInvalidPasswordExceptionHandler(InvalidPasswordExceptionHandler e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
+        problemDetail.setTitle("Invalid password");
+        problemDetail.setProperty("timestamp", Instant.now());
+        problemDetail.setType(URI.create("localhost:8080/errors/not-valid-value"));
+        return problemDetail;
+    }
 }
