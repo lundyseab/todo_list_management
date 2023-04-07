@@ -1,6 +1,7 @@
 package com.example.todo_list_management.repository;
 
 import com.example.todo_list_management.model.entity.Task;
+import com.example.todo_list_management.model.request.StatusRequest;
 import com.example.todo_list_management.model.request.TaskRequest;
 import org.apache.ibatis.annotations.*;
 
@@ -61,4 +62,9 @@ public interface TaskRepository {
             """)
     @ResultMap("taskMap")
     List<Task> getAllTaskByCurrentUser(Integer currentUserId);
+
+    @Select("""
+            update task_tb set status = #{req.status} where id = #{taskId} and user_id = #{currentUserId} returning id
+            """)
+    Integer changeTaskStatus(@Param("req") StatusRequest statusRequest, Integer taskId, Integer currentUserId);
 }

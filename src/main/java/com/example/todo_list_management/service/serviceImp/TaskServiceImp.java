@@ -7,6 +7,7 @@ import com.example.todo_list_management.exception.NotValidValueExceptionHandler;
 import com.example.todo_list_management.model.entity.Category;
 import com.example.todo_list_management.model.entity.Task;
 import com.example.todo_list_management.model.entity.UserApp;
+import com.example.todo_list_management.model.request.StatusRequest;
 import com.example.todo_list_management.model.request.TaskRequest;
 import com.example.todo_list_management.repository.CategoryRepository;
 import com.example.todo_list_management.repository.TaskRepository;
@@ -124,11 +125,17 @@ public class TaskServiceImp implements TaskService {
 
     @Override
     public List<Task> getAllTaskByCurrentUser() {
-
         if(taskRepository.getAllTaskByCurrentUser(getCurrentUser()).isEmpty()) {
             throw new EmptyDataExceptionHandler("Data is empty");
         }
-
         return taskRepository.getAllTaskByCurrentUser(getCurrentUser());
+    }
+
+    @Override
+    public Integer changeTaskStatus(StatusRequest statusRequest, Integer taskId) {
+        if(taskRepository.getTaskByCurrentUser(taskId, getCurrentUser()) == null) {
+            throw new NotFoundExceptionHandler("Task not found");
+        }
+        return taskRepository.changeTaskStatus(statusRequest, taskId, getCurrentUser());
     }
 }

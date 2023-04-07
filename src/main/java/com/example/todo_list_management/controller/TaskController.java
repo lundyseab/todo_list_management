@@ -2,6 +2,7 @@ package com.example.todo_list_management.controller;
 
 import com.example.todo_list_management.model.entity.Category;
 import com.example.todo_list_management.model.entity.Task;
+import com.example.todo_list_management.model.request.StatusRequest;
 import com.example.todo_list_management.model.request.TaskRequest;
 import com.example.todo_list_management.model.response.BodyResponse;
 import com.example.todo_list_management.model.response.ResponseClass;
@@ -84,6 +85,12 @@ public class TaskController {
     @Operation (summary = "Get all tasks for current user")
     public ResponseEntity<BodyResponse<List<Task>>> getAllTaskByCurrentUser() {
         return getBodyResponse(HttpStatus.OK, true, taskService.getAllTaskByCurrentUser());
+    }
+
+    @PutMapping("/status/{id}/user")
+    @Operation (summary = "Change status for current user")
+    public ResponseEntity<BodyResponse<Task>> changeStatusByCurrentUser(@RequestBody StatusRequest statusRequest, @PathVariable("id") Integer taskId) {
+        return getBodyResponse(HttpStatus.OK, true, taskService.getTaskByCurrentUser(taskService.changeTaskStatus(statusRequest, taskId)));
     }
 
 }
