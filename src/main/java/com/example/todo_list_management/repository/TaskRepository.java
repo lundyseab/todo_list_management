@@ -44,7 +44,7 @@ public interface TaskRepository {
 
     @Select("""
             UPDATE task_tb 
-            SET name = #{req.taskName}, description = #{req.description}, status = #{req.status}, category_id = #{req.categoryId}
+            SET name = #{req.taskName}, description = #{req.description}, status = #{req.status}, category_id = #{req.categoryId}, date = #{req.date}
             WHERE id = #{taskId}
             and user_id = #{currentUserId}
             returning id;
