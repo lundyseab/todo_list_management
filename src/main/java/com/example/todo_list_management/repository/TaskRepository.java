@@ -18,7 +18,10 @@ public interface TaskRepository {
                     @Result(property = "taskId", column = "id"),
                     @Result(property = "taskName", column = "name"),
                     @Result(property = "userId", column = "user_id"),
-                    @Result(property = "categoryId", column = "id")
+                    @Result(property = "categoryId", column = "category_id"),
+                    @Result(property = "category", column = "category_id",
+                        one = @One(select = "com.example.todo_list_management.repository.CategoryRepository.getCategoryById")
+                    )
             }
     )
     List<Task> findAllTasks();

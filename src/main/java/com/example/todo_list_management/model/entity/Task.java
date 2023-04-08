@@ -18,4 +18,5 @@ public class Task {
     private Integer userId;
     private String status;
     private Integer categoryId;
+    private Category category;
 }
