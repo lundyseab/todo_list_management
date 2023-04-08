@@ -115,4 +115,14 @@ public class CategoryServiceImp implements CategoryService {
 
         return categoryRepository.getCategoryOfUserById(categoryId, getCurrentUser());
     }
+
+    @Override
+    public List<Category> findAllCategoryOfCurrentUserForFilter() {
+
+        if(categoryRepository.findAllCategoryOfCurrentUserForFilter(getCurrentUser()).isEmpty()) {
+            throw new EmptyDataExceptionHandler("Data is empty");
+        }
+
+        return categoryRepository.findAllCategoryOfCurrentUserForFilter(getCurrentUser());
+    }
 }

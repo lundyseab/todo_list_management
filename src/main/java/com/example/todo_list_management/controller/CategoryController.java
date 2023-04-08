@@ -81,4 +81,9 @@ public class CategoryController {
         return getBodyResponse(HttpStatus.OK, true, categoryService.getCategoryByCurrentUserId(categoryId));
     }
 
+    @GetMapping("/all")
+    @Operation(summary = "Get Category For Current User")
+    public ResponseEntity<BodyResponse<List<Category>>> getAllCategoriesByCurrentUser() {
+        return getBodyResponse(HttpStatus.OK, true, categoryService.findAllCategoryOfCurrentUserForFilter());
+    }
 }

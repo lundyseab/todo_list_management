@@ -55,4 +55,10 @@ public interface CategoryRepository {
     @Select(" SELECT * FROM category_tb WHERE id= #{categoryId} and user_id = #{currentUserId}")
     @ResultMap("categoryMapper")
     Category getCategoryOfUserById(Integer categoryId, Integer currentUserId);
+
+    @Select("SELECT * FROM category_tb " +
+            "where user_id = #{currentUserId} " +
+            "order by id desc ")
+    @ResultMap("categoryMapper")
+    List<Category> findAllCategoryOfCurrentUserForFilter(Integer currentUserId);
 }

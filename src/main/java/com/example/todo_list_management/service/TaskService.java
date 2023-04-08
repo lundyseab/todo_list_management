@@ -20,6 +20,7 @@ public interface TaskService {
     List<Task> searchByStatus(String status);
 
     Task getTaskByCurrentUser(Integer integer);
+
     List<Task> getAllTaskByCurrentUser();
 
     Integer changeTaskStatus(StatusRequest statusRequest, Integer taskId);

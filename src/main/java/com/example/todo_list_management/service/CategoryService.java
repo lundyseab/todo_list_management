@@ -16,6 +16,10 @@ public interface CategoryService {
     Integer updateCategory(CategoryRequest categoryRequest, Integer categoryId);
 
     List<Category> getAllCategoriesOfCurrentUser(Integer page, Integer size);
+
     List<Category> getAllCategoriesOfCurrentUserByDesc(Integer page, Integer size);
+
     Category getCategoryByCurrentUserId(Integer categoryId);
+
+    List<Category> findAllCategoryOfCurrentUserForFilter();
 }
