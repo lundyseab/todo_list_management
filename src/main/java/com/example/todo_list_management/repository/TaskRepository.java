@@ -11,7 +11,7 @@ import java.util.List;
 public interface TaskRepository {
     //Query all Task
     @Select("""
-            SELECT * FROM task_tb;
+            SELECT * FROM task_tb order by id desc;
             """)
     @Results(id = "taskMap",
             value = {
@@ -58,7 +58,7 @@ public interface TaskRepository {
     List<Task> searchByStatus(String status, Integer currentUserId);
 
     @Select("""
-                select * from task_tb where user_id = #{currentUserId} order by id asc;
+                select * from task_tb where user_id = #{currentUserId} order by id desc;
             """)
     @ResultMap("taskMap")
     List<Task> getAllTaskByCurrentUser(Integer currentUserId);
