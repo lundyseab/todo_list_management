@@ -1,5 +1,3 @@
--- create database
-create database todo_list_management;
 
 -- create user table------------------------------------
 create table user_tb(

@@ -1,0 +1,6 @@
+FROM postgres
+
+ENV POSTGRES_DB todo_list_management
+ENV POSTGRES_USER lundy
+ENV POSTGRES_PASSWORD lundy
+COPY ./src/main/resources/script/schema.sql /docker-entrypoint-initdb.d/
